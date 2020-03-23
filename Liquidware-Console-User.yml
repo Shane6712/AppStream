@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Local IAM user for Liquidware profile unity console s3 access
+
+
+Parameters:
+
+  Liquidwares3BucketName:
+    Type: String
+    Description: Name of Liquidware s3 Bucket
+
+
+Resources:
+
+#######################
+## IAM Users         ##
+#######################
+
+  liquidwareUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: liquidware_console
+      Policies:
+        - PolicyName: liquidwareS3user
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: liquidwareS3ListAccess
+                Effect: Allow
+                Action:
+                  - s3:ListAllMyBuckets
+                  - s3:GetBucketLocation
+                Resource: "*"
+              - Sid: liquidwareS3ListBucket
+                Effect: Allow
+                Action:
+                  - s3:ListBucket
+                Resource:
+                  - !Sub arn:aws:s3:::${Liquidwares3BucketName}
+              - Sid: liquidwareS3GetObjectConfigurations
+                Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource:
+                  - !Sub arn:aws:s3:::${Liquidwares3BucketName}/configurations/*
+              - Sid: liquidwareS3GetObjectflexapp
+                Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource:
+                  - !Sub arn:aws:s3:::${Liquidwares3BucketName}/flexapp/*
