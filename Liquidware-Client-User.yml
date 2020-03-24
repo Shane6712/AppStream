@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Local IAM user for Liquidware ProfileUnity Client S3 Access
+Description: Local IAM user for Liquidware ProfileUnity Client S3 access
 
 
 Parameters:
