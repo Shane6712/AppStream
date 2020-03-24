@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Local IAM user for Liquidware profile unity client s3 access
+Description: Local IAM user for Liquidware ProfileUnity Client S3 Access
 
 
 Parameters:
 
   Liquidwares3BucketName:
     Type: String
-    Description: Name of Liquidware s3 Bucket
+    Description: Name of Liquidware S3 Bucket
 
 
 Resources:
